@@ -438,13 +438,13 @@ Is er voldoende beschikbare ruimte op de harde schĳf?</WaveFileMalformed>
   <EffectKaraoke>
     <Title>Karaoke-effect</Title>
     <ChooseColor>Kleur kiezen:</ChooseColor>
-    <TotalMilliseconds>Totaal millisec.:</TotalMilliseconds>
-    <EndDelayInMilliseconds>Eindvertraging in millisec.:</EndDelayInMilliseconds>
+    <TotalMilliseconds>Totaal milliseconden:</TotalMilliseconds>
+    <EndDelayInMilliseconds>Eindvertraging in milliseconden:</EndDelayInMilliseconds>
   </EffectKaraoke>
   <EffectTypewriter>
     <Title>Typemachine-effect</Title>
-    <TotalMilliseconds>Totaal millisec.:</TotalMilliseconds>
-    <EndDelayInMilliseconds>Eindvertraging in millisec.:</EndDelayInMilliseconds>
+    <TotalMilliseconds>Totaal milliseconden:</TotalMilliseconds>
+    <EndDelayInMilliseconds>Eindvertraging in milliseconden:</EndDelayInMilliseconds>
   </EffectTypewriter>
   <ExportCustomText>
     <Title>Eigen tekstindeling exporteren</Title>
@@ -462,7 +462,7 @@ Is er voldoende beschikbare ruimte op de harde schĳf?</WaveFileMalformed>
     <Header>Koptekst</Header>
     <TextLine>Tekstregel (ondertitel)</TextLine>
     <TimeCode>Tĳdcode</TimeCode>
-    <NewLine>Nieuwe regel</NewLine>
+    <NewLine>Regeleinde</NewLine>
     <Footer>Voettekst</Footer>
     <DoNotModify>[niet wĳzigen]</DoNotModify>
   </ExportCustomTextFormat>
@@ -2536,7 +2536,7 @@ Wilt u deze wĳzigingen behouden?</KeepChangesMessage>
     <Nordic>Scandinavisch</Nordic>
     <Spanish>Spaans</Spanish>
     <German>Duits</German>
-    <AutoSubmitOnFirstChar>Automatisch doorgaan na &amp;eerste teken</AutoSubmitOnFirstChar>
+    <AutoSubmitOnFirstChar>Automatisch toewĳzen na &amp;eerste teken</AutoSubmitOnFirstChar>
     <EditLastX>Laatste bewerken: {0}</EditLastX>
   </VobSubOcrCharacter>
   <VobSubOcrCharacterInspect>
@@ -2551,15 +2551,15 @@ Wilt u deze wĳzigingen behouden?</KeepChangesMessage>
   </VobSubOcrNewFolder>
   <VobSubOcrSetItalicFactor>
     <Title>Decursiveringsfactor bepalen</Title>
-    <Description>Pas de waarde aan tot cursief in normaal overgaat. De originele afbeelding moet cursief zĳn.</Description>
+    <Description>Waarde aanpassen tot cursief in romein overgaat. De originele afbeelding moet cursief zĳn.</Description>
   </VobSubOcrSetItalicFactor>
   <OcrPreprocessing>
     <Title>OCR-beeldvoorbewerking</Title>
     <Colors>Kleuren</Colors>
-    <AdjustAlpha>Pas de waarde aan tot de tekst leesbaar is (doorgaans 200 tot 300)</AdjustAlpha>
+    <AdjustAlpha>Waarde aanpassen tot de tekst leesbaar is (doorgaans 200 tot 300)</AdjustAlpha>
     <OriginalImage>Originele afbeelding</OriginalImage>
     <PostImage>Abeelding na voorbewerking</PostImage>
-    <BinaryThreshold>Binaire-beeldvergelĳkingsdrempel</BinaryThreshold>
+    <BinaryThreshold>Binaire beeldvergelĳkingsdrempel</BinaryThreshold>
     <InvertColors>Kleuren inverteren</InvertColors>
     <YellowToWhite>Geel naar wit</YellowToWhite>
     <ColorToWhite>Kleur naar wit</ColorToWhite>
