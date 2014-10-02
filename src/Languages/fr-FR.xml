@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+﻿﻿<?xml version="1.0" encoding="utf-8"?>
 <Language Name="français">
   <General>
     <Title>Subtitle Edit</Title>
@@ -200,8 +200,8 @@ Note: Vérifiez l'espace disque disponible.</WaveFileMalformed>
     <PlainText>Texte brut</PlainText>
     <Ocr>OCR...</Ocr>
     <Filter>Filtre</Filter>
-    <FilterSkipped>Filtré</FilterSkipped>
-    <FilterSrtNoUtf8BOM>Fichiers SRT sans indicateur d'ordre des octets</FilterSrtNoUtf8BOM>
+    <FilterSkipped>Négligé</FilterSkipped>
+    <FilterSrtNoUtf8BOM>Fichiers SubRip (.srt) sans indicateur d'ordre des octets</FilterSrtNoUtf8BOM>
     <FilterMoreThanTwoLines>Sous-titres à plus de deux lignes</FilterMoreThanTwoLines>
     <FilterContains>Texte contenant...</FilterContains>
     <FixCommonErrorsErrorX>Corriger erreurs fréquentes : {0}</FixCommonErrorsErrorX>
@@ -623,7 +623,7 @@ Note: Vérifiez l'espace disque disponible.</WaveFileMalformed>
     <UnableToFixTextXY>Impossible de corriger le texte n°{0}: {1}</UnableToFixTextXY>
     <XOverlappingTimestampsFixed>{0} chevauchement(s) temporel(s) corrigé(s)</XOverlappingTimestampsFixed>
     <XDisplayTimesProlonged>{0} temps d'affichage prolongé(s)</XDisplayTimesProlonged>
-    <XInvalidHtmlTagsFixed>{0} marquage(s) HTML corrigé(s)</XInvalidHtmlTagsFixed>
+    <XInvalidHtmlTagsFixed>{0} marquage(s) html corrigé(s)</XInvalidHtmlTagsFixed>
     <XDisplayTimesShortned>{0} temps d'affichage raccourci(s)</XDisplayTimesShortned>
     <XLinesUnbreaked>{0} ligne(s) recollée(s)</XLinesUnbreaked>
     <UnneededSpace>Espace inutile</UnneededSpace>
@@ -938,7 +938,7 @@ Note: Vérifiez l'espace disque disponible.</WaveFileMalformed>
         <ImportOcrFromDvd>Importer sous-titres OCR de VOB/IFO (DVD)...</ImportOcrFromDvd>
         <ImportOcrVobSubSubtitle>Importer sous-titres OCR de VobSub (sub/idx)...</ImportOcrVobSubSubtitle>
         <ImportBluRaySupFile>Importer sous-titres OCR de Blu-ray (sup)...</ImportBluRaySupFile>
-        <ImportXSub>Importer sous-titres OCR de divx/avi (XSub)...</ImportXSub>
+        <ImportXSub>Importer sous-titres OCR de divx/avi (xsub)...</ImportXSub>
         <ImportSubtitleFromMatroskaFile>Importer sous-titres d'un fichier Matroska...</ImportSubtitleFromMatroskaFile>
         <ImportSubtitleWithManualChosenEncoding>Importer sous-titres en choisissant l'encodage...</ImportSubtitleWithManualChosenEncoding>
         <ImportText>Importer texte...</ImportText>
@@ -949,12 +949,12 @@ Note: Vérifiez l'espace disque disponible.</WaveFileMalformed>
         <ExportBluRaySup>Blu-ray sup...</ExportBluRaySup>
         <ExportVobSub>VobSub (sub/idx)...</ExportVobSub>
         <ExportCavena890>Cavena 890...</ExportCavena890>
-        <ExportEbu>EBU STL...</ExportEbu>
+        <ExportEbu>EBU stl...</ExportEbu>
         <ExportPac>PAC (Screen Electronics)...</ExportPac>
         <ExportPlainText>Texte en clair...</ExportPlainText>
         <ExportAdobeEncoreFabImageScript>Adobe Encore FAB image script...</ExportAdobeEncoreFabImageScript>
         <ExportKoreanAtsFilePair>Korean ATS file pair...</ExportKoreanAtsFilePair>
-        <ExportAvidStl>Avid STL...</ExportAvidStl>
+        <ExportAvidStl>Avid stl...</ExportAvidStl>
         <ExportDvdStudioProStl>DVD Studio Pro STL...</ExportDvdStudioProStl>
         <ExportCapMakerPlus>CapMaker Plus...</ExportCapMakerPlus>
         <ExportCaptionsInc>Captions Inc...</ExportCaptionsInc>
@@ -1378,8 +1378,8 @@ Poursuivre ?</SubtitleAppendPrompt>
     <VobSubFiles>Fichiers sous-titres VobSub</VobSubFiles>
     <OpenBluRaySupFile>Ouvrir sous-titres Blu-ray (sup)...</OpenBluRaySupFile>
     <BluRaySupFiles>Fichiers sous-titres Blu-ray</BluRaySupFiles>
-    <OpenXSubFiles>Ouvrir fichiers XSub...</OpenXSubFiles>
-    <XSubFiles>Fichiers XSub</XSubFiles>
+    <OpenXSubFiles>Ouvrir fichiers xsub...</OpenXSubFiles>
+    <XSubFiles>Fichiers xsub</XSubFiles>
     <BeforeImportingVobSubFile>Avant d'importer des sous-titres VobSub</BeforeImportingVobSubFile>
     <BeforeImportingBluRaySupFile>Avant d'importer des sous-titres Blu-ray</BeforeImportingBluRaySupFile>
     <BeforeImportingBdnXml>Avant d'importer un fichier XML BDN</BeforeImportingBdnXml>
@@ -1654,8 +1654,8 @@ peuvent modifier le même fichier de sous-titres (collaboration)</Information>
     <NonSpaceCharacter>Tous sauf les espaces (\S)</NonSpaceCharacter>
     <ZeroOrMore>Zéro ou plus (*)</ZeroOrMore>
     <OneOrMore>Un ou plus (+)</OneOrMore>
-    <InCharacterGroup>Dans groupe de caractères ([test])</InCharacterGroup>
-    <NotInCharacterGroup>Pas dans groupe de caractères ([^test])</NotInCharacterGroup>
+    <InCharacterGroup>Dans groupe de caractères ([a-z])</InCharacterGroup>
+    <NotInCharacterGroup>Pas dans groupe de caractères ([^a-z])</NotInCharacterGroup>
   </RegularExpressionContextMenu>
   <RemoveTextFromHearImpaired>
     <Title>Supprimer le texte pour les malentendants</Title>
@@ -1814,7 +1814,7 @@ peuvent modifier le même fichier de sous-titres (collaboration)</Information>
     <ShowFullscreenButton>Afficher touche plein écran</ShowFullscreenButton>
     <PreviewFontSize>Taille de police pour aperçu :</PreviewFontSize>
     <MainWindowVideoControls>Contrôles principaux de la fenêtre vidéo</MainWindowVideoControls>
-    <CustomSearchTextAndUrl>Recherche texte et URL personnalisée</CustomSearchTextAndUrl>
+    <CustomSearchTextAndUrl>Recherche texte et url personnalisée</CustomSearchTextAndUrl>
     <WaveformAppearance>Apparence du spectrogramme</WaveformAppearance>
     <WaveformGridColor>Couleur de la grille</WaveformGridColor>
     <WaveformShowGridLines>Afficher le quadrillage</WaveformShowGridLines>
@@ -2350,7 +2350,7 @@ Veuillez réessayer plus tard.</DownloadMpvFailed>
     <ImportNewTimeCodes>Importer nouveaux timecodes</ImportNewTimeCodes>
     <SaveSubtitleImageAs>Enregistrer images de sous-titre sous...</SaveSubtitleImageAs>
     <SaveAllSubtitleImagesAsBdnXml>Enregistrer toutes les images (PNG/BDN xml )...</SaveAllSubtitleImagesAsBdnXml>
-    <SaveAllSubtitleImagesWithHtml>Enregistrer toutes les images avec index HTML...</SaveAllSubtitleImagesWithHtml>
+    <SaveAllSubtitleImagesWithHtml>Enregistrer toutes les images avec index html...</SaveAllSubtitleImagesWithHtml>
     <XImagesSavedInY>{0} images enregistrées dans {1}</XImagesSavedInY>
     <DictionaryX>Dictionnaire: {0}</DictionaryX>
     <RightToLeft>De droite à gauche</RightToLeft>
