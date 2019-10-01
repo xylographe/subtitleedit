@@ -819,6 +819,7 @@ $HorzAlign          =   Center
         public string ListViewLineSeparatorString { get; set; }
         public int ListViewDoubleClickAction { get; set; }
         public string SaveAsUseFileNameFrom { get; set; }
+        public string SaveAsDefaultLanguageId { get; set; }
         public string UppercaseLetters { get; set; }
         public int DefaultAdjustMilliseconds { get; set; }
         public bool AutoRepeatOn { get; set; }
@@ -967,6 +968,7 @@ $HorzAlign          =   Center
             ListViewLineSeparatorString = "<br />";
             ListViewDoubleClickAction = 1;
             SaveAsUseFileNameFrom = "video";
+            SaveAsDefaultLanguageId = string.Empty;
             UppercaseLetters = "ABCDEFGHIJKLMNOPQRSTUVWZYXÆØÃÅÄÖÉÈÁÂÀÇÊÍÓÔÕÚŁАБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯĞİŞÜÙÁÌÑÎ";
             DefaultAdjustMilliseconds = 1000;
             AutoRepeatOn = true;
@@ -2738,6 +2740,12 @@ $HorzAlign          =   Center
             if (subNode != null)
             {
                 settings.General.SaveAsUseFileNameFrom = subNode.InnerText;
+            }
+
+            subNode = node.SelectSingleNode("SaveAsDefaultLanguageId");
+            if (subNode != null)
+            {
+                settings.General.SaveAsDefaultLanguageId = subNode.InnerText;
             }
 
             subNode = node.SelectSingleNode("UppercaseLetters");
@@ -7081,6 +7089,7 @@ $HorzAlign          =   Center
                 textWriter.WriteElementString("ListViewLineSeparatorString", settings.General.ListViewLineSeparatorString);
                 textWriter.WriteElementString("ListViewDoubleClickAction", settings.General.ListViewDoubleClickAction.ToString(CultureInfo.InvariantCulture));
                 textWriter.WriteElementString("SaveAsUseFileNameFrom", settings.General.SaveAsUseFileNameFrom);
+                textWriter.WriteElementString("SaveAsDefaultLanguageId", settings.General.SaveAsDefaultLanguageId);
                 textWriter.WriteElementString("UppercaseLetters", settings.General.UppercaseLetters);
                 textWriter.WriteElementString("DefaultAdjustMilliseconds", settings.General.DefaultAdjustMilliseconds.ToString(CultureInfo.InvariantCulture));
                 textWriter.WriteElementString("AutoRepeatOn", settings.General.AutoRepeatOn.ToString(CultureInfo.InvariantCulture));
