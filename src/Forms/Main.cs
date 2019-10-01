@@ -3746,6 +3746,76 @@ namespace Nikse.SubtitleEdit.Forms
             return result;
         }
 
+        private string GetFileNameWithLanguageId(string fileName)
+        {
+            if (!string.IsNullOrEmpty(fileName))
+            {
+                var defaultId = Configuration.Settings.General.SaveAsDefaultLanguageId;
+                if (defaultId.Length == 3 || defaultId.Length == 2)
+                {
+                    var detectedId = LanguageAutoDetect.AutoDetectGoogleLanguageOrNull(_subtitle);
+                    var extension = Path.GetExtension(fileName);
+                    var dotIndex = fileName.Length - extension.Length;
+
+                    if (defaultId.Length == 3)
+                    {
+                        if (detectedId != null)
+                        {
+                            try
+                            {
+                                detectedId = CultureInfo.CreateSpecificCulture(detectedId).ThreeLetterISOLanguageName;
+                            }
+                            catch
+                            {
+                                try
+                                {
+                                    detectedId = CultureInfo.GetCultureInfo(detectedId).ThreeLetterISOLanguageName;
+                                }
+                                catch
+                                {
+                                    detectedId = null;
+                                }
+                            }
+                        }
+                        if (Path.GetFileNameWithoutExtension(fileName).Length > 4)
+                        {
+                            var index = dotIndex - 4;
+                            if (fileName[index] == '.' && CharUtils.IsEnglishAlphabet(fileName[index + 1]) && CharUtils.IsEnglishAlphabet(fileName[index + 2]) && CharUtils.IsEnglishAlphabet(fileName[index + 3]))
+                            {
+                                if (detectedId != null)
+                                {
+                                    return $"{fileName.Remove(index)}.{detectedId.ToLowerInvariant()}{extension}";
+                                }
+                                return fileName;
+                            }
+                        }
+                    }
+                    else // defaultId.Length == 2
+                    {
+                        if (Path.GetFileNameWithoutExtension(fileName).Length > 3)
+                        {
+                            var index = dotIndex - 3;
+                            if (fileName[index] == '.' && CharUtils.IsEnglishAlphabet(fileName[index + 1]) && CharUtils.IsEnglishAlphabet(fileName[index + 2]))
+                            {
+                                if (detectedId != null)
+                                {
+                                    return $"{fileName.Remove(index)}.{detectedId.ToLowerInvariant()}{extension}";
+                                }
+                                return fileName;
+                            }
+                        }
+                    }
+
+                    if (detectedId == null)
+                    {
+                        detectedId = defaultId;
+                    }
+                    return $"{fileName.Substring(0, dotIndex)}.{detectedId.ToLowerInvariant()}{extension}";
+                }
+            }
+            return fileName;
+        }
+
         private DialogResult SaveSubtitle(SubtitleFormat format, bool useNewLineWithOnly0A = false, bool skipPrompts = false)
         {
             if (string.IsNullOrEmpty(_fileName) || _converted)
