@@ -3656,33 +3656,36 @@ namespace Nikse.SubtitleEdit.Forms
                 saveFileDialog1.InitialDirectory = openFileDialog1.InitialDirectory;
             }
 
-            if (!string.IsNullOrWhiteSpace(_fileName) && Configuration.Settings.General.SaveAsUseFileNameFrom.Equals("file", StringComparison.OrdinalIgnoreCase))
+            var fileName = GetFileNameWithLanguageId(_fileName);
+            var videoFileName = GetFileNameWithLanguageId(_videoFileName);
+
+            if (!string.IsNullOrWhiteSpace(fileName) && Configuration.Settings.General.SaveAsUseFileNameFrom.Equals("file", StringComparison.OrdinalIgnoreCase))
             {
-                saveFileDialog1.FileName = Utilities.GetFileNameWithoutExtension(_fileName);
-                saveFileDialog1.InitialDirectory = Path.GetDirectoryName(_fileName);
+                saveFileDialog1.FileName = Utilities.GetFileNameWithoutExtension(fileName);
+                saveFileDialog1.InitialDirectory = Path.GetDirectoryName(fileName);
             }
-            else if (!string.IsNullOrEmpty(_videoFileName) && Configuration.Settings.General.SaveAsUseFileNameFrom.Equals("video", StringComparison.OrdinalIgnoreCase))
+            else if (!string.IsNullOrEmpty(videoFileName) && Configuration.Settings.General.SaveAsUseFileNameFrom.Equals("video", StringComparison.OrdinalIgnoreCase))
             {
-                if (_converted && !string.IsNullOrEmpty(_fileName) && !File.Exists(_fileName))
+                if (_converted && !string.IsNullOrEmpty(fileName) && !File.Exists(fileName))
                 {
-                    saveFileDialog1.FileName = Utilities.GetFileNameWithoutExtension(_fileName);
+                    saveFileDialog1.FileName = Utilities.GetFileNameWithoutExtension(fileName);
                 }
                 else
                 {
-                    saveFileDialog1.FileName = Utilities.GetFileNameWithoutExtension(_videoFileName);
+                    saveFileDialog1.FileName = Utilities.GetFileNameWithoutExtension(videoFileName);
                 }
 
-                saveFileDialog1.InitialDirectory = Path.GetDirectoryName(_videoFileName);
+                saveFileDialog1.InitialDirectory = Path.GetDirectoryName(videoFileName);
             }
-            else if (!string.IsNullOrWhiteSpace(_fileName))
+            else if (!string.IsNullOrWhiteSpace(fileName))
             {
-                saveFileDialog1.FileName = Utilities.GetFileNameWithoutExtension(_fileName);
-                saveFileDialog1.InitialDirectory = Path.GetDirectoryName(_fileName);
+                saveFileDialog1.FileName = Utilities.GetFileNameWithoutExtension(fileName);
+                saveFileDialog1.InitialDirectory = Path.GetDirectoryName(fileName);
             }
-            else if (!string.IsNullOrEmpty(_videoFileName))
+            else if (!string.IsNullOrEmpty(videoFileName))
             {
-                saveFileDialog1.FileName = Utilities.GetFileNameWithoutExtension(_videoFileName);
-                saveFileDialog1.InitialDirectory = Path.GetDirectoryName(_videoFileName);
+                saveFileDialog1.FileName = Utilities.GetFileNameWithoutExtension(videoFileName);
+                saveFileDialog1.InitialDirectory = Path.GetDirectoryName(videoFileName);
             }
             else
             {
