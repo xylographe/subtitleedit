@@ -23,10 +23,10 @@ namespace Nikse.SubtitleEdit.Core.SubtitleFormats
             var lastHorizontalcalAlign = "$HorzAlign = Center";
             var sb = new StringBuilder();
             sb.AppendLine(header);
-            foreach (Paragraph p in subtitle.Paragraphs)
+            foreach (var p in subtitle.Paragraphs)
             {
-                string startTime = string.Format(timeFormat, p.StartTime.Hours, p.StartTime.Minutes, p.StartTime.Seconds, MillisecondsToFramesMaxFrameRate(p.StartTime.Milliseconds));
-                string endTime = string.Format(timeFormat, p.EndTime.Hours, p.EndTime.Minutes, p.EndTime.Seconds, MillisecondsToFramesMaxFrameRate(p.EndTime.Milliseconds));
+                var startTime = string.Format(timeFormat, p.StartTime.Hours, p.StartTime.Minutes, p.StartTime.Seconds, MillisecondsToFramesMaxFrameRate(p.StartTime.Milliseconds));
+                var endTime = string.Format(timeFormat, p.EndTime.Hours, p.EndTime.Minutes, p.EndTime.Seconds, MillisecondsToFramesMaxFrameRate(p.EndTime.Milliseconds));
                 DvdStudioPro.ToTextAlignment(p, sb, ref lastVerticalAlign, ref lastHorizontalcalAlign);
                 sb.AppendFormat(paragraphWriteFormat, startTime, endTime, DvdStudioPro.EncodeStyles(p.Text));
             }
@@ -42,7 +42,7 @@ namespace Nikse.SubtitleEdit.Core.SubtitleFormats
             bool italicOn = false;
             bool boldOn = false;
             bool underlineOn = false;
-            foreach (string line in lines)
+            foreach (var line in lines)
             {
                 if (string.IsNullOrWhiteSpace(line))
                 {
@@ -51,15 +51,15 @@ namespace Nikse.SubtitleEdit.Core.SubtitleFormats
                 {
                     if (RegexTimeCodes.IsMatch(line))
                     {
-                        string[] toPart = line.Substring(0, 24).Trim(',').Split(',');
+                        var twoPart = line.Substring(0, 24).Trim(',').Split(',');
                         var p = new Paragraph();
-                        if (toPart.Length == 2 &&
-                            DvdStudioPro.GetTimeCode(p.StartTime, toPart[0]) &&
-                            DvdStudioPro.GetTimeCode(p.EndTime, toPart[1]))
+                        if (twoPart.Length == 2 &&
+                            DvdStudioPro.GetTimeCode(p.StartTime, twoPart[0]) &&
+                            DvdStudioPro.GetTimeCode(p.EndTime, twoPart[1]))
                         {
                             number++;
                             p.Number = number;
-                            string text = line.Substring(25).Trim();
+                            var text = line.Substring(25).Trim();
                             p.Text = text.Replace(" | ", Environment.NewLine).Replace("|", Environment.NewLine);
                             p.Text = DvdStudioPro.DecodeStyles(p.Text);
                             if (italicOn && !p.Text.Contains("<i>"))

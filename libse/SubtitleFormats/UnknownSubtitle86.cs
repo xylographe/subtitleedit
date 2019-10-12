@@ -18,7 +18,7 @@ namespace Nikse.SubtitleEdit.Core.SubtitleFormats
             var sb = new StringBuilder();
             foreach (var p in subtitle.Paragraphs)
             {
-                string text = HtmlUtil.RemoveHtmlTags(p.Text);
+                var text = HtmlUtil.RemoveHtmlTags(p.Text);
                 text = text.Replace(Environment.NewLine, " ");
                 sb.AppendLine($"[{p.StartTime.Hours:00}.{p.StartTime.Minutes:00}.{p.StartTime.Seconds:00}] {text}");
             }
@@ -28,24 +28,24 @@ namespace Nikse.SubtitleEdit.Core.SubtitleFormats
         public override void LoadSubtitle(Subtitle subtitle, List<string> lines, string fileName)
         {
             _errorCount = 0;
-            foreach (string line in lines)
+            foreach (var line in lines)
             {
-                bool success = false;
-                string s = line.TrimStart();
+                var success = false;
+                var s = line.TrimStart();
                 if (s.StartsWith('[') && RegexTimeCodes.IsMatch(s))
                 {
                     try
                     {
-                        string[] parts = s.Substring(1, 8).Split('.');
+                        var parts = s.Substring(1, 8).Split('.');
                         if (parts.Length == 3)
                         {
                             int hours = int.Parse(parts[0]);
                             int minutes = int.Parse(parts[1]);
                             int seconds = int.Parse(parts[2]);
-                            string text = s.Remove(0, 10).TrimStart();
+                            var text = s.Remove(0, 10).TrimStart();
                             text = text.Replace("|", Environment.NewLine);
                             var start = new TimeCode(hours, minutes, seconds, 0);
-                            double duration = Utilities.GetOptimalDisplayMilliseconds(text);
+                            var duration = Utilities.GetOptimalDisplayMilliseconds(text);
                             var end = new TimeCode(start.TotalMilliseconds + duration);
 
                             var p = new Paragraph(start, end, Utilities.AutoBreakLine(text));

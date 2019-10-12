@@ -37,9 +37,9 @@ namespace Nikse.SubtitleEdit.Core.SubtitleFormats
         public override void LoadSubtitle(Subtitle subtitle, List<string> lines, string fileName)
         {
             _errorCount = 0;
-            foreach (string line in lines)
+            foreach (var line in lines)
             {
-                string s = line.Trim();
+                var s = line.Trim();
                 if (RegexTimeCodes.IsMatch(s))
                 {
                     try
@@ -65,9 +65,9 @@ namespace Nikse.SubtitleEdit.Core.SubtitleFormats
             }
 
             int index = 1;
-            foreach (Paragraph paragraph in subtitle.Paragraphs)
+            foreach (var paragraph in subtitle.Paragraphs)
             {
-                Paragraph next = subtitle.GetParagraphOrDefault(index);
+                var next = subtitle.GetParagraphOrDefault(index);
                 if (next != null)
                 {
                     paragraph.EndTime.TotalMilliseconds = next.StartTime.TotalMilliseconds - 1;

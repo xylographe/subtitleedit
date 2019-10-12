@@ -37,7 +37,7 @@ LICENSE=
             foreach (var p in subtitle.Paragraphs)
             {
                 int milliseconds = p.StartTime.Milliseconds / 10;
-                string time = string.Format(timeFormat, p.StartTime.Hours, p.StartTime.Minutes, p.StartTime.Seconds, milliseconds);
+                var time = string.Format(timeFormat, p.StartTime.Hours, p.StartTime.Minutes, p.StartTime.Seconds, milliseconds);
                 sb.AppendLine("{" + string.Format(paragraphWriteFormat, time, p.Text) + "}");
 
                 milliseconds = p.EndTime.Milliseconds / 10;
@@ -53,11 +53,11 @@ LICENSE=
             //Some text
             //}
             _errorCount = 0;
-            bool textOn = false;
-            string text = string.Empty;
+            var textOn = false;
+            var text = string.Empty;
             var start = new TimeCode();
             var end = new TimeCode();
-            foreach (string line in lines)
+            foreach (var line in lines)
             {
                 if (textOn)
                 {
@@ -96,7 +96,7 @@ LICENSE=
                         try
                         {
                             textOn = true;
-                            string[] arr = line.Substring(3).Trim().Split(':');
+                            var arr = line.Substring(3).Trim().Split(':');
                             if (arr.Length == 4)
                             {
                                 int hours = int.Parse(arr[0]);

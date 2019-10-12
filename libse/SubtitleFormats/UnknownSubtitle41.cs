@@ -40,7 +40,7 @@ namespace Nikse.SubtitleEdit.Core.SubtitleFormats
             Paragraph p = null;
             bool textOn = false;
             var sb = new StringBuilder();
-            foreach (string line in lines)
+            foreach (var line in lines)
             {
                 try
                 {

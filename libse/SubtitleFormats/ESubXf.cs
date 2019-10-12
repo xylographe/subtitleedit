@@ -287,7 +287,7 @@ namespace Nikse.SubtitleEdit.Core.SubtitleFormats
             }
 
             subtitle.Header = xmlString;
-            char[] timeCodeSeparators = { ':' };
+            var timeCodeSeparators = new[] { ':' };
             var ns = new XmlNamespaceManager(xml.NameTable);
             ns.AddNamespace("esub-xf", NameSpaceUri);
             var isTimebaseSmtp = xml.DocumentElement.Attributes["timebase"]?.Value != "msec"; // "msec" or "smtp"
@@ -295,9 +295,9 @@ namespace Nikse.SubtitleEdit.Core.SubtitleFormats
             {
                 try
                 {
-                    string start = node.Attributes["display"].InnerText;
-                    string end = node.Attributes["clear"].InnerText;
-                    sb = new StringBuilder();
+                    var start = node.Attributes["display"].InnerText;
+                    var end = node.Attributes["clear"].InnerText;
+                    sb.Clear();
                     var hregion = node.SelectSingleNode("esub-xf:hregion", ns);
                     var topAlign = hregion.Attributes["vposition"]?.Value == "top";
                     foreach (XmlNode lineNode in node.SelectNodes("esub-xf:hregion/esub-xf:line", ns))

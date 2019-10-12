@@ -23,10 +23,10 @@ namespace Nikse.SubtitleEdit.Core.SubtitleFormats
             var lastHorizontalcalAlign = "$HorzAlign = Center";
             var sb = new StringBuilder();
             sb.AppendLine(header);
-            foreach (Paragraph p in subtitle.Paragraphs)
+            foreach (var p in subtitle.Paragraphs)
             {
-                string startTime = string.Format(timeFormat, p.StartTime.Hours, p.StartTime.Minutes, p.StartTime.Seconds, MillisecondsToFramesMaxFrameRate(p.StartTime.Milliseconds));
-                string endTime = string.Format(timeFormat, p.EndTime.Hours, p.EndTime.Minutes, p.EndTime.Seconds, MillisecondsToFramesMaxFrameRate(p.EndTime.Milliseconds));
+                var startTime = string.Format(timeFormat, p.StartTime.Hours, p.StartTime.Minutes, p.StartTime.Seconds, MillisecondsToFramesMaxFrameRate(p.StartTime.Milliseconds));
+                var endTime = string.Format(timeFormat, p.EndTime.Hours, p.EndTime.Minutes, p.EndTime.Seconds, MillisecondsToFramesMaxFrameRate(p.EndTime.Milliseconds));
                 sb = ToTextAlignment(p, sb, ref lastVerticalAlign, ref lastHorizontalcalAlign);
                 sb.AppendFormat(paragraphWriteFormat, startTime, endTime, EncodeStyles(p.Text));
             }
@@ -100,13 +100,13 @@ namespace Nikse.SubtitleEdit.Core.SubtitleFormats
             bool boldOn = false;
             bool underlineOn = false;
 
-            foreach (string line in lines)
+            foreach (var line in lines)
             {
                 if (!string.IsNullOrWhiteSpace(line) && line[0] != '$')
                 {
                     if (RegexTimeCodes.IsMatch(line))
                     {
-                        string[] threePart = line.Split(new[] { "\t,\t" }, StringSplitOptions.None);
+                        var threePart = line.Split(new[] { "\t,\t" }, StringSplitOptions.None);
                         var p = new Paragraph();
                         if (threePart.Length == 3 &&
                             GetTimeCode(p.StartTime, threePart[0]) &&

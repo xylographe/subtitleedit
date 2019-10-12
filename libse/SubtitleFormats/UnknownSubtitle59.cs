@@ -48,9 +48,9 @@ namespace Nikse.SubtitleEdit.Core.SubtitleFormats
         {
             _errorCount = 0;
             Paragraph p = null;
-            foreach (string line in lines)
+            foreach (var line in lines)
             {
-                string s = line.Trim();
+                var s = line.Trim();
                 if (s.Length > 7 && char.IsDigit(s[0]) && char.IsDigit(s[1]) && s[2] == ':')
                 {
                     if (RegexTimeCodes.IsMatch(s) || RegexTimeCodes2.IsMatch(s))
@@ -63,8 +63,8 @@ namespace Nikse.SubtitleEdit.Core.SubtitleFormats
                         try
                         {
                             p = new Paragraph();
-                            string[] start = s.Substring(0, 8).Split(':');
-                            string[] end = s.Remove(0, s.Length - 8).Split(':');
+                            var start = s.Substring(0, 8).Split(':');
+                            var end = s.Remove(0, s.Length - 8).Split(':');
                             if (start.Length == 3)
                             {
                                 int hours = int.Parse(start[0]);
@@ -77,7 +77,7 @@ namespace Nikse.SubtitleEdit.Core.SubtitleFormats
                                 seconds = int.Parse(end[2]);
                                 p.EndTime = new TimeCode(hours, minutes, seconds, 0);
 
-                                string text = s.Remove(0, 8).Trim();
+                                var text = s.Remove(0, 8).Trim();
                                 text = text.Substring(0, text.Length - 8).Trim();
                                 p.Text = text;
                                 if (text.Length > 1 && Utilities.IsInteger(text.Substring(0, 2)))
@@ -98,7 +98,7 @@ namespace Nikse.SubtitleEdit.Core.SubtitleFormats
                         try
                         {
                             p = new Paragraph();
-                            string[] start = s.Substring(0, 8).Split(':');
+                            var start = s.Substring(0, 8).Split(':');
                             if (start.Length == 3)
                             {
                                 int hours = int.Parse(start[0]);
@@ -106,7 +106,7 @@ namespace Nikse.SubtitleEdit.Core.SubtitleFormats
                                 int seconds = int.Parse(start[2]);
                                 p.StartTime = new TimeCode(hours, minutes, seconds, 0);
 
-                                string text = s.Remove(0, 8).Trim();
+                                var text = s.Remove(0, 8).Trim();
                                 p.Text = text;
                                 if (text.Length > 1 && Utilities.IsInteger(text.Substring(0, 2)))
                                 {
@@ -125,7 +125,7 @@ namespace Nikse.SubtitleEdit.Core.SubtitleFormats
                     {
                         try
                         {
-                            string[] end = s.Remove(0, s.Length - 8).Split(':');
+                            var end = s.Remove(0, s.Length - 8).Split(':');
                             if (end.Length == 3 && p != null)
                             {
                                 int hours = int.Parse(end[0]);
@@ -133,7 +133,7 @@ namespace Nikse.SubtitleEdit.Core.SubtitleFormats
                                 int seconds = int.Parse(end[2]);
                                 p.EndTime = new TimeCode(hours, minutes, seconds, 0);
 
-                                string text = s.Substring(0, s.Length - 8).Trim();
+                                var text = s.Substring(0, s.Length - 8).Trim();
                                 p.Text = p.Text + Environment.NewLine + text;
                                 if (text.Length > 1 && Utilities.IsInteger(text.Substring(0, 2)))
                                 {

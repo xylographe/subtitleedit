@@ -21,7 +21,7 @@ namespace Nikse.SubtitleEdit.Core.SubtitleFormats
             //HERE IS THE RUNDOWN.               7:00:05:03AM
             var sb = new StringBuilder();
             const string format = "{0}{1}";
-            foreach (Paragraph p in subtitle.Paragraphs)
+            foreach (var p in subtitle.Paragraphs)
             {
                 sb.AppendLine(string.Format(format, p.Text.Replace(Environment.NewLine, " ").PadRight(35), EncodeTimeCode(p.StartTime)));
             }
@@ -37,10 +37,10 @@ namespace Nikse.SubtitleEdit.Core.SubtitleFormats
         {
             _errorCount = 0;
             Paragraph p = null;
-            foreach (string line in lines)
+            foreach (var line in lines)
             {
-                string s = line.Trim();
-                string[] arr = line.Split();
+                var s = line.Trim();
+                var arr = line.Split();
                 var timeCode = arr[arr.Length - 1];
                 if (RegexTimeCodesAm.IsMatch(timeCode) || RegexTimeCodesPm.IsMatch(timeCode))
                 {
@@ -67,9 +67,9 @@ namespace Nikse.SubtitleEdit.Core.SubtitleFormats
             }
 
             int index = 1;
-            foreach (Paragraph paragraph in subtitle.Paragraphs)
+            foreach (var paragraph in subtitle.Paragraphs)
             {
-                Paragraph next = subtitle.GetParagraphOrDefault(index);
+                var next = subtitle.GetParagraphOrDefault(index);
                 if (next != null)
                 {
                     paragraph.EndTime.TotalMilliseconds = next.StartTime.TotalMilliseconds - 1;

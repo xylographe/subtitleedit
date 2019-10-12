@@ -99,13 +99,13 @@ namespace Nikse.SubtitleEdit.Core.SubtitleFormats
             _errorCount = 0;
             var offsetInMilliseconds = 0.0d;
             var header = new StringBuilder();
-            char[] splitChars = { ':', '.' };
-            foreach (string line in lines)
+            var splitChars = new[] { ':', '.' };
+            foreach (var line in lines)
             {
                 if (line.StartsWith('[') && RegexTimeCodes.IsMatch(line))
                 {
-                    string s = line.Substring(1, 8);
-                    string[] parts = s.Split(splitChars, StringSplitOptions.RemoveEmptyEntries);
+                    var s = line.Substring(1, 8);
+                    var parts = s.Split(splitChars, StringSplitOptions.RemoveEmptyEntries);
                     if (parts.Length == 3)
                     {
                         try
@@ -113,7 +113,7 @@ namespace Nikse.SubtitleEdit.Core.SubtitleFormats
                             int minutes = int.Parse(parts[0]);
                             int seconds = int.Parse(parts[1]);
                             int milliseconds = int.Parse(parts[2]) * 10;
-                            string text = line.Remove(0, 9).Trim().TrimStart(']').Trim();
+                            var text = line.Remove(0, 9).Trim().TrimStart(']').Trim();
                             var start = new TimeCode(0, minutes, seconds, milliseconds);
                             var p = new Paragraph(start, new TimeCode(), text);
                             subtitle.Paragraphs.Add(p);
@@ -173,8 +173,7 @@ namespace Nikse.SubtitleEdit.Core.SubtitleFormats
                 else if (line.StartsWith("[offset:", StringComparison.Ordinal)) // [length:How long the song is]
                 {
                     var temp = line.Replace("[offset:", string.Empty).Replace("]", string.Empty).Replace("'", string.Empty).RemoveChar(' ').TrimEnd();
-                    double d;
-                    if (double.TryParse(temp, out d))
+                    if (double.TryParse(temp, out var d))
                     {
                         offsetInMilliseconds = d;
                     }
@@ -208,15 +207,15 @@ namespace Nikse.SubtitleEdit.Core.SubtitleFormats
                 var p = subtitle.Paragraphs[i];
                 while (RegexTimeCodes.IsMatch(p.Text))
                 {
-                    string s = p.Text.Substring(1, 8);
+                    var s = p.Text.Substring(1, 8);
                     p.Text = p.Text.Remove(0, 10).Trim();
-                    string[] parts = s.Split(splitChars, StringSplitOptions.RemoveEmptyEntries);
+                    var parts = s.Split(splitChars, StringSplitOptions.RemoveEmptyEntries);
                     try
                     {
                         int minutes = int.Parse(parts[0]);
                         int seconds = int.Parse(parts[1]);
                         int milliseconds = int.Parse(parts[2]) * 10;
-                        string text = GetTextAfterTimeCodes(p.Text);
+                        var text = GetTextAfterTimeCodes(p.Text);
                         var start = new TimeCode(0, minutes, seconds, milliseconds);
                         var newParagraph = new Paragraph(start, new TimeCode(), text);
                         subtitle.Paragraphs.Add(newParagraph);
@@ -231,10 +230,10 @@ namespace Nikse.SubtitleEdit.Core.SubtitleFormats
             subtitle.Sort(SubtitleSortCriteria.StartTime);
 
             int index = 0;
-            foreach (Paragraph p in subtitle.Paragraphs)
+            foreach (var p in subtitle.Paragraphs)
             {
                 p.Text = Utilities.AutoBreakLine(p.Text);
-                Paragraph next = subtitle.GetParagraphOrDefault(index + 1);
+                var next = subtitle.GetParagraphOrDefault(index + 1);
                 if (next != null)
                 {
                     if (string.IsNullOrEmpty(next.Text))

@@ -36,10 +36,10 @@ namespace Nikse.SubtitleEdit.Core.SubtitleFormats
             const string paragraphWriteFormat = "{0} {1} {2}";
             const string timeFormat = "{0:00}:{1:00}:{2:00}.{3:000}";
             var sb = new StringBuilder();
-            foreach (Paragraph p in subtitle.Paragraphs)
+            foreach (var p in subtitle.Paragraphs)
             {
-                string startTime = string.Format(timeFormat, p.StartTime.Hours, p.StartTime.Minutes, p.StartTime.Seconds, p.StartTime.Milliseconds);
-                string endTime = string.Format(timeFormat, p.EndTime.Hours, p.EndTime.Minutes, p.EndTime.Seconds, p.EndTime.Milliseconds);
+                var startTime = string.Format(timeFormat, p.StartTime.Hours, p.StartTime.Minutes, p.StartTime.Seconds, p.StartTime.Milliseconds);
+                var endTime = string.Format(timeFormat, p.EndTime.Hours, p.EndTime.Minutes, p.EndTime.Seconds, p.EndTime.Milliseconds);
                 sb.AppendLine(string.Format(paragraphWriteFormat, startTime, endTime, HtmlUtil.RemoveHtmlTags(p.Text.Replace(Environment.NewLine, " "))));
             }
             return sb.ToString().Trim();
@@ -48,11 +48,11 @@ namespace Nikse.SubtitleEdit.Core.SubtitleFormats
         public override void LoadSubtitle(Subtitle subtitle, List<string> lines, string fileName)
         {
             _errorCount = 0;
-            foreach (string line in lines)
+            foreach (var line in lines)
             {
                 if (RegexTimeCodes.IsMatch(line))
                 {
-                    string[] parts = line.Split(new[] { ' ' }, StringSplitOptions.None);
+                    var parts = line.Split(new[] { ' ' }, StringSplitOptions.None);
                     var p = new Paragraph();
                     if (parts.Length > 2 &&
                         GetTimeCode(p.StartTime, parts[0].Trim()) &&
@@ -74,7 +74,7 @@ namespace Nikse.SubtitleEdit.Core.SubtitleFormats
         {
             try
             {
-                string[] timeParts = timeString.Split(':', '.');
+                var timeParts = timeString.Split(':', '.');
                 timeCode.Hours = int.Parse(timeParts[0]);
                 timeCode.Minutes = int.Parse(timeParts[1]);
                 timeCode.Seconds = int.Parse(timeParts[2]);

@@ -22,9 +22,9 @@ namespace Nikse.SubtitleEdit.Core.SubtitleFormats
             //10:57:27:17 MICHIGAN?
 
             var sb = new StringBuilder();
-            foreach (Paragraph p in subtitle.Paragraphs)
+            foreach (var p in subtitle.Paragraphs)
             {
-                string text = HtmlUtil.RemoveHtmlTags(p.Text).Replace("♪", "\\M");
+                var text = HtmlUtil.RemoveHtmlTags(p.Text).Replace("♪", "\\M");
                 sb.AppendLine(EncodeTimeCode(p.StartTime) + " " + text);
             }
             return sb.ToString().Trim();
@@ -39,9 +39,9 @@ namespace Nikse.SubtitleEdit.Core.SubtitleFormats
         {
             _errorCount = 0;
             Paragraph p = null;
-            foreach (string line in lines)
+            foreach (var line in lines)
             {
-                string s = line.Trim();
+                var s = line.Trim();
                 if (RegexTimeCodes.IsMatch(s))
                 {
                     if (!string.IsNullOrEmpty(p?.Text))
@@ -55,7 +55,7 @@ namespace Nikse.SubtitleEdit.Core.SubtitleFormats
                     {
                         var arr = s.Substring(0, 11).Split(':');
                         p.StartTime = DecodeTimeCodeFramesFourParts(arr);
-                        string text = s.Substring(11).Trim();
+                        var text = s.Substring(11).Trim();
                         p.Text = text;
                         if (text.Length > 1 && Utilities.IsInteger(text.Substring(0, 2)))
                         {
@@ -87,11 +87,11 @@ namespace Nikse.SubtitleEdit.Core.SubtitleFormats
             }
 
             int index = 1;
-            foreach (Paragraph paragraph in subtitle.Paragraphs)
+            foreach (var paragraph in subtitle.Paragraphs)
             {
                 paragraph.Text = paragraph.Text.Replace("\\M", "♪");
 
-                Paragraph next = subtitle.GetParagraphOrDefault(index);
+                var next = subtitle.GetParagraphOrDefault(index);
                 if (next != null && paragraph.EndTime.TotalMilliseconds < 0.01)
                 {
                     paragraph.EndTime.TotalMilliseconds = next.StartTime.TotalMilliseconds - 1;

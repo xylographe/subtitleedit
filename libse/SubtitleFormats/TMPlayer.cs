@@ -62,26 +62,26 @@ namespace Nikse.SubtitleEdit.Core.SubtitleFormats
         { // 0:02:36:You've returned to the village|after 2 years, Shekhar.
             // 00:00:50:America has made my fortune.
             _errorCount = 0;
-            foreach (string line in lines)
+            foreach (var line in lines)
             {
                 bool success = false;
                 if (line.IndexOf(':') > 0 && RegexTimeCodes.IsMatch(line))
                 {
                     try
                     {
-                        string s = line;
+                        var s = line;
                         if (line.Length > 9 && line[8] == ' ')
                         {
                             s = line.Substring(0, 8) + ":" + line.Substring(9);
                         }
 
-                        string[] parts = s.Split(':');
+                        var parts = s.Split(':');
                         if (parts.Length > 3)
                         {
                             int hours = int.Parse(parts[0]);
                             int minutes = int.Parse(parts[1]);
                             int seconds = int.Parse(parts[2]);
-                            string text = string.Empty;
+                            var text = string.Empty;
                             for (int i = 3; i < parts.Length; i++)
                             {
                                 if (text.Length == 0)
@@ -95,7 +95,7 @@ namespace Nikse.SubtitleEdit.Core.SubtitleFormats
                             }
                             text = text.Replace("|", Environment.NewLine);
                             var start = new TimeCode(hours, minutes, seconds, 0);
-                            double duration = Utilities.GetOptimalDisplayMilliseconds(text);
+                            var duration = Utilities.GetOptimalDisplayMilliseconds(text);
                             var end = new TimeCode(start.TotalMilliseconds + duration);
 
                             var p = new Paragraph(start, end, text);
@@ -115,9 +115,9 @@ namespace Nikse.SubtitleEdit.Core.SubtitleFormats
             }
 
             int index = 0;
-            foreach (Paragraph p in subtitle.Paragraphs)
+            foreach (var p in subtitle.Paragraphs)
             {
-                Paragraph next = subtitle.GetParagraphOrDefault(index + 1);
+                var next = subtitle.GetParagraphOrDefault(index + 1);
                 if (next != null && next.StartTime.TotalMilliseconds <= p.EndTime.TotalMilliseconds)
                 {
                     p.EndTime.TotalMilliseconds = next.StartTime.TotalMilliseconds - 1;

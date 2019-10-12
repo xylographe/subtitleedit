@@ -25,7 +25,7 @@ namespace Nikse.SubtitleEdit.Core.SubtitleFormats
             //09:00:03  AND MIKE DUGAN AND LATER GENE CLEM IS DISCUSSING THIS
 
             var sb = new StringBuilder();
-            foreach (Paragraph p in subtitle.Paragraphs)
+            foreach (var p in subtitle.Paragraphs)
             {
                 var lines = HtmlUtil.RemoveHtmlTags(p.Text).SplitToLines();
                 sb.AppendLine(EncodeTimeCode(p.StartTime) + "\t" + lines[0]);
@@ -48,9 +48,9 @@ namespace Nikse.SubtitleEdit.Core.SubtitleFormats
         {
             _errorCount = 0;
             Paragraph p = null;
-            foreach (string line in lines)
+            foreach (var line in lines)
             {
-                string s = line.Trim();
+                var s = line.Trim();
                 if (RegexTimeCodes.IsMatch(s) && !UnknownSubtitle59.RegexTimeCodes.IsMatch(s))
                 {
                     if (p != null && !string.IsNullOrEmpty(p.Text))
@@ -62,14 +62,14 @@ namespace Nikse.SubtitleEdit.Core.SubtitleFormats
 
                     try
                     {
-                        string[] arr = s.Substring(0, 8).Split(':');
+                        var arr = s.Substring(0, 8).Split(':');
                         if (arr.Length == 3)
                         {
                             int hours = int.Parse(arr[0]);
                             int minutes = int.Parse(arr[1]);
                             int seconds = int.Parse(arr[2]);
                             p.StartTime = new TimeCode(hours, minutes, seconds, 0);
-                            string text = s.Remove(0, 8).Trim();
+                            var text = s.Remove(0, 8).Trim();
                             p.Text = text;
                             if (text.Length > 1 && Utilities.IsInteger(text.Substring(0, 2)))
                             {
@@ -102,9 +102,9 @@ namespace Nikse.SubtitleEdit.Core.SubtitleFormats
             }
 
             int index = 1;
-            foreach (Paragraph paragraph in subtitle.Paragraphs)
+            foreach (var paragraph in subtitle.Paragraphs)
             {
-                Paragraph next = subtitle.GetParagraphOrDefault(index);
+                var next = subtitle.GetParagraphOrDefault(index);
                 if (next != null)
                 {
                     paragraph.EndTime.TotalMilliseconds = next.StartTime.TotalMilliseconds - 1;
