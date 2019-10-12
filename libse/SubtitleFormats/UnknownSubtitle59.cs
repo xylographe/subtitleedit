@@ -53,7 +53,7 @@ namespace Nikse.SubtitleEdit.Core.SubtitleFormats
                 string s = line.Trim();
                 if (s.Length > 7 && char.IsDigit(s[0]) && char.IsDigit(s[1]) && s[2] == ':')
                 {
-                    if (RegexTimeCodes.Match(s).Success || RegexTimeCodes2.IsMatch(s))
+                    if (RegexTimeCodes.IsMatch(s) || RegexTimeCodes2.IsMatch(s))
                     {
                         if (RegexTimeCodes2.IsMatch(s))
                         {
@@ -93,7 +93,7 @@ namespace Nikse.SubtitleEdit.Core.SubtitleFormats
                             _errorCount++;
                         }
                     }
-                    else if (RegexStartOnly.Match(s).Success)
+                    else if (RegexStartOnly.IsMatch(s))
                     {
                         try
                         {
@@ -121,7 +121,7 @@ namespace Nikse.SubtitleEdit.Core.SubtitleFormats
                             _errorCount++;
                         }
                     }
-                    else if (RegexEndOnly.Match(s).Success)
+                    else if (RegexEndOnly.IsMatch(s))
                     {
                         try
                         {

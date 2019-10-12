@@ -91,7 +91,7 @@ LICENSE=
                 }
                 else
                 {
-                    if (RegexTimeCodes.Match(line).Success)
+                    if (RegexTimeCodes.IsMatch(line))
                     {
                         try
                         {

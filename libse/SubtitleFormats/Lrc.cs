@@ -51,8 +51,8 @@ namespace Nikse.SubtitleEdit.Core.SubtitleFormats
             }
             if (subtitle.Paragraphs.Count > _errorCount)
             {
-                if (new UnknownSubtitle33().IsMine(lines, fileName) || 
-                    new UnknownSubtitle36().IsMine(lines, fileName) || 
+                if (new UnknownSubtitle33().IsMine(lines, fileName) ||
+                    new UnknownSubtitle36().IsMine(lines, fileName) ||
                     new TMPlayer().IsMine(lines, fileName))
                 {
                     return false;
@@ -102,7 +102,7 @@ namespace Nikse.SubtitleEdit.Core.SubtitleFormats
             char[] splitChars = { ':', '.' };
             foreach (string line in lines)
             {
-                if (line.StartsWith('[') && RegexTimeCodes.Match(line).Success)
+                if (line.StartsWith('[') && RegexTimeCodes.IsMatch(line))
                 {
                     string s = line.Substring(1, 8);
                     string[] parts = s.Split(splitChars, StringSplitOptions.RemoveEmptyEntries);
@@ -206,7 +206,7 @@ namespace Nikse.SubtitleEdit.Core.SubtitleFormats
             for (int i = 0; i < max; i++)
             {
                 var p = subtitle.Paragraphs[i];
-                while (RegexTimeCodes.Match(p.Text).Success)
+                while (RegexTimeCodes.IsMatch(p.Text))
                 {
                     string s = p.Text.Substring(1, 8);
                     p.Text = p.Text.Remove(0, 10).Trim();

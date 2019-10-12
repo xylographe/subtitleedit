@@ -49,7 +49,7 @@ namespace Nikse.SubtitleEdit.Core.SubtitleFormats
                     continue;
                 }
 
-                if (RegexTimeCodes.Match(line).Success)
+                if (RegexTimeCodes.IsMatch(line))
                 {
                     string[] threePart = line.Split(new[] { ',' }, StringSplitOptions.None);
                     p = new Paragraph();

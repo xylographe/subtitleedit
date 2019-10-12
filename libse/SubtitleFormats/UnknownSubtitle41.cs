@@ -46,7 +46,7 @@ namespace Nikse.SubtitleEdit.Core.SubtitleFormats
                 {
                     if (textOn)
                     {
-                        if (line.Length > 1 && line.Length < 11 && RegexTimeCodes.Match(line.TrimEnd('/')).Success)
+                        if (line.Length > 1 && line.Length < 11 && RegexTimeCodes.IsMatch(line.TrimEnd('/')))
                         {
                             p.EndTime = DecodeTimeCode(line.TrimEnd('/').Split('.'));
                             if (sb.Length > 0)
@@ -68,7 +68,7 @@ namespace Nikse.SubtitleEdit.Core.SubtitleFormats
                     }
                     else
                     {
-                        if (line.Length > 1 && line.Length < 11 && RegexTimeCodes.Match(line).Success)
+                        if (line.Length > 1 && line.Length < 11 && RegexTimeCodes.IsMatch(line))
                         {
                             p = new Paragraph();
                             sb.Clear();
