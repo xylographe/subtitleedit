@@ -104,11 +104,11 @@ namespace Nikse.SubtitleEdit.Forms
         {
             try
             {
-                return "https://github.com/SubtitleEdit/subtitleedit/commit/" + Utilities.AssemblyDescription.Substring(0, 7);
+                return "https://github.com/xylographe/subtitleedit/commit/" + Utilities.AssemblyDescription.Substring(0, 7);
             }
             catch
             {
-                return "https://github.com/SubtitleEdit/subtitleedit";
+                return "https://github.com/xylographe/subtitleedit/tree/xylo";
             }
         }
 
