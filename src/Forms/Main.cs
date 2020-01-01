@@ -12527,6 +12527,7 @@ namespace Nikse.SubtitleEdit.Forms
                 return false;
             }
 
+#if Never_Not_No
             if (tsParser.SubtitlePacketIds.Count == 0 && tsParser.TeletextSubtitlesLookup.Count == 1 && tsParser.TeletextSubtitlesLookup.First().Value.Count() == 1)
             {
                 _subtitle = new Subtitle(tsParser.TeletextSubtitlesLookup.First().Value.First().Value);
@@ -12543,9 +12544,10 @@ namespace Nikse.SubtitleEdit.Forms
                 SetTitle();
                 return true;
             }
+#endif
 
             int packetId;
-            if (tsParser.SubtitlePacketIds.Count + tsParser.TeletextSubtitlesLookup.Sum(p => p.Value.Count()) > 1)
+            if (tsParser.SubtitlePacketIds.Count + tsParser.TeletextSubtitlesLookup.Sum(p => p.Value.Count()) > 0)
             {
                 using (var subChooser = new TransportStreamSubtitleChooser())
                 {
