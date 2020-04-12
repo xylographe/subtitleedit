@@ -91,7 +91,7 @@ namespace Nikse.SubtitleEdit.Logic.Ocr.Tesseract
                     AddTesseractError("Tesseract timeout");
                     return "Timeout!";
                 }
-                if (process.ExitCode != 0)
+                if (process.ExitCode != 0 && string.IsNullOrEmpty(LastError))
                 {
                     AddTesseractError("Tesseract exited with code " + process.ExitCode);
                 }
