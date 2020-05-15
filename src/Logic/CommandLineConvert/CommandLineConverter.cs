@@ -470,9 +470,9 @@ namespace Nikse.SubtitleEdit.Logic.CommandLineConvert
                                     var tracks = matroska.GetTracks(true);
                                     if (tracks.Count > 0)
                                     {
-                                        foreach (var track in tracks.Where(p => !forcedOnly || p.IsForced))
+                                        foreach (var track in tracks)
                                         {
-                                            if (trackNumbers.Count == 0 || trackNumbers.Contains(track.TrackNumber))
+                                            if ((!forcedOnly || track.IsForced) && (trackNumbers.Count == 0 || trackNumbers.Contains(track.TrackNumber)))
                                             {
                                                 var lang = track.Language.RemoveChar('?').RemoveChar('!').RemoveChar('*').RemoveChar(',').RemoveChar('/').Trim();
                                                 if (track.CodecId.Equals("S_VOBSUB", StringComparison.OrdinalIgnoreCase))
